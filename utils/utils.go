@@ -3,6 +3,7 @@ package utils
 import (
 	"crypto/md5"
 	"crypto/rand"
+	"crypto/sha1"
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
@@ -38,4 +39,10 @@ func GenToken() {
 	token := GenUniqueID(string(password))
 
 	fmt.Println("Your token is:", token)
+}
+
+func GetSha1(s string) string {
+	h := sha1.New()
+	h.Write([]byte(s))
+	return hex.EncodeToString(h.Sum(nil))
 }
